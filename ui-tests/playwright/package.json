@@ -1,0 +1,10 @@
+{
+    "name": "moviematch-ui-tests",
+    "version": "1.0.0",
+    "scripts": {
+        "test": "npx playwright test --reporter=list,html"
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.35.0"
+    }
+}

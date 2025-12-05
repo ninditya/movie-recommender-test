@@ -1,0 +1,35 @@
+Test ID,Area,Title,Preconditions,Steps,Test Data,Expected Result,Priority,Notes
+AUTH-01,Authentication,Login valid,App up; user exists,"1. Open app
+2. Enter email
+3. Enter password
+4. Click Login",email=test@mail.com;password=MMd4vEwEvDTi8ZZ,User redirected to dashboard; welcome text visible,High,
+AUTH-02,Authentication,Login invalid,App up,"1. Open app
+2. Enter email
+3. Enter wrong password
+4. Click Login",email=test@mail.com;password=wrongpass,Error message 'Invalid credentials' displayed,High,
+AUTH-03,Authentication,Session persistence,User logged in,"1. Login successfully
+2. Refresh page",—,User remains logged in; dashboard visible,Medium,
+AUTH-04,Authentication,Logout,User logged in,1. Click Logout,—,User returned to login page; session cleared,Medium,
+AI-01,Search,Search by exact title,App up; logged in,"1. Enter 'The Big Lebowski' in search
+2. Click Search",query=The Big Lebowski,Movie card for 'The Big Lebowski' visible; recommendation list present,High,
+AI-02,Search,Search by description,App up; logged in,"1. Enter 'detective looking for missing person'
+2. Click Search",query=detective looking for missing person,Relevant detective movies returned; top 3 relevant,High,
+AI-03,Search,Search by genre,App up; logged in,"1. Enter 'thriller'
+2. Click Search",query=thriller,Result list populated with thriller movies; genre tags visible,Medium,
+AI-04,Search,Nonsense input fallback,App up; logged in,"1. Enter 'asdasdqwe123'
+2. Click Search",query=asdasdqwe123,UI shows 'No results' or friendly fallback message; no crash,High,
+AI-05,AI-Consistency,Same query multiple times,App up; logged in,"1. Enter same query 5x with short delay
+2. Collect top-3 results each run",query=Inception,"Results stable across runs or variance within defined tolerance (e.g., top-3 overlap >= 66%)",Medium,Define tolerance
+AI-06,Search,Nonexistent movie,App up; logged in,"1. Search for 'Nonexistent Movie 2040'
+2. Click Search""",query=Nonexistent Movie 2040,UI displays 'No results' message and suggestions,Low,
+AI-07,Performance,Response latency,App up; logged in,"1. Search for popular movie
+2. Measure time from click to results render""",query=Avatar,"Response time < 3s (target)`,High,Measure from client side",,
+API-01,API,Edge function health,API available,"1. Send GET to /functions/v1/movie-finder
+2. Check headers and status""",—,200 or 204 for OPTIONS; CORS headers present; health OK,High,Check preflight handling
+UI-01,UX,Loading skeleton present,App up; logged in,"1. Trigger search
+2. Observe loading state",—,Loading skeleton visible until results render,Medium,
+UI-02,UX,Error messaging,App up; logged in,"1. Force API error (e.g., simulate 500)
+2. Search",—,User-friendly error message with retry option,High,
+HIST-01,History,History persistence,App up; logged in,"1. Perform 3 searches
+2. Open History",—,Last 3 searches visible in History page in order,Low,
+SEC-01,Security,Authorization header absent,App up; logged in,1. Make API call without token,—,API responds 401 Unauthorized or handles gracefully,High,
