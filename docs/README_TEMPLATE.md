@@ -12,7 +12,6 @@ This repository contains test cases, API collections, and automation scripts to 
 
 ## Contents
 - /docs/test-cases.csv — Comprehensive test cases for manual and automated runs
-- /api-tests/postman — Postman collection for API checks
 - /ui-tests/playwright — Playwright-based UI automation
 - /selenium — Selenium (Python) smoke tests
 
